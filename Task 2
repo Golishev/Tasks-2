@@ -1,1 +1,41 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        // 1. Создание списка с дубликатами
+        List<string> names = new List<string>
+        {
+            "Анна", "Борис", "Анна", "Виктор", "Галина",
+            "Борис", "Дмитрий", "Елена", "Виктор", "Зоя"
+        };
+
+        // 2. Вывод исходного списка
+        Console.WriteLine("Исходный список:");
+        foreach (string name in names)
+        {
+            Console.Write(name + " ");
+        }
+        Console.WriteLine();
+
+        // 3. Использование множества для удаления дубликатов
+        HashSet<string> uniqueNames = new HashSet<string>();
+        foreach (string name in names)
+        {
+            if (!uniqueNames.Contains(name))
+            {
+                uniqueNames.Add(name);
+            }
+        }
+
+        // 4. Вывод уникальных элементов
+        Console.WriteLine("Уникальные элементы:");
+        foreach (string name in uniqueNames)
+        {
+            Console.Write(name + " ");
+        }
+        Console.WriteLine();
+    }
+}
