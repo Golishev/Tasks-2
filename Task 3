@@ -1,1 +1,99 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+
+        // 1. Создание трёх множеств
+        HashSet<int> set1 = new HashSet<int>();
+        HashSet<int> set2 = new HashSet<int>();
+        HashSet<int> set3 = new HashSet<int>();
+
+        while (set1.Count < 10)
+        {
+            set1.Add(random.Next(1, 21)); // от 1 до 20
+        }
+        while (set2.Count < 10)
+        {
+            set2.Add(random.Next(1, 21));
+        }
+        while (set3.Count < 10)
+        {
+            set3.Add(random.Next(1, 21));
+        }
+
+        // 2. Вывод всех множеств
+        Console.WriteLine("Множество 1: " + string.Join(", ", set1));
+        Console.WriteLine("Множество 2: " + string.Join(", ", set2));
+        Console.WriteLine("Множество 3: " + string.Join(", ", set3));
+
+        // 3. Поиск элементов, присутствующих во всех трёх множествах
+        HashSet<int> intersection = new HashSet<int>();
+        foreach (int num in set1)
+        {
+            if (set2.Contains(num) && set3.Contains(num))
+            {
+                intersection.Add(num);
+            }
+        }
+
+        Console.WriteLine("\nЭлементы, присутствующие во всех трёх множествах:");
+        foreach (int num in intersection)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 4. Поиск элементов, уникальных для каждого множества
+        HashSet<int> uniqueToSet1 = new HashSet<int>();
+        foreach (int num in set1)
+        {
+            if (!set2.Contains(num) && !set3.Contains(num))
+            {
+                uniqueToSet1.Add(num);
+            }
+        }
+
+        HashSet<int> uniqueToSet2 = new HashSet<int>();
+        foreach (int num in set2)
+        {
+            if (!set1.Contains(num) && !set3.Contains(num))
+            {
+                uniqueToSet2.Add(num);
+            }
+        }
+
+        HashSet<int> uniqueToSet3 = new HashSet<int>();
+        foreach (int num in set3)
+        {
+            if (!set1.Contains(num) && !set2.Contains(num))
+            {
+                uniqueToSet3.Add(num);
+            }
+        }
+
+        Console.WriteLine("\nУникальные элементы множества 1:");
+        foreach (int num in uniqueToSet1)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("\nУникальные элементы множества 2:");
+        foreach (int num in uniqueToSet2)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("\nУникальные элементы множества 3:");
+        foreach (int num in uniqueToSet3)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+    }
+}
