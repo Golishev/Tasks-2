@@ -1,1 +1,24 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+        HashSet<int> uniqueNumbers = new HashSet<int>();
+        int attempts = 0;
+
+        // Генерация чисел до заполнения множества числами от 1 до 10
+        while (uniqueNumbers.Count < 10)
+        {
+            int num = random.Next(1, 11); // от 1 до 10 включительно
+            uniqueNumbers.Add(num);
+            attempts++;
+        }
+
+        // Вывод результата
+        Console.WriteLine("Все уникальные числа от 1 до 10 найдены!");
+        Console.WriteLine("Количество попыток: " + attempts);
+    }
+}
