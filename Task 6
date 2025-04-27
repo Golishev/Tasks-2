@@ -1,1 +1,66 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        // 1. Ввод текста
+        Console.WriteLine("Введите текст:");
+        string text = Console.ReadLine();
+
+        // 2. Разделение текста на слова вручную
+        List<string> words = new List<string>();
+        string currentWord = "";
+
+        foreach (char c in text)
+        {
+            if (char.IsLetterOrDigit(c))
+            {
+                currentWord += char.ToLower(c); // игнорируем регистр
+            }
+            else
+            {
+                if (currentWord.Length > 0)
+                {
+                    words.Add(currentWord);
+                    currentWord = "";
+                }
+            }
+        }
+
+        // Не забываем добавить последнее слово
+        if (currentWord.Length > 0)
+        {
+            words.Add(currentWord);
+        }
+
+        // 3. Считаем уникальные слова и их частоту
+        HashSet<string> uniqueWords = new HashSet<string>();
+        Dictionary<string, int> frequency = new Dictionary<string, int>();
+
+        foreach (string word in words)
+        {
+            if (!uniqueWords.Contains(word))
+            {
+                uniqueWords.Add(word);
+            }
+
+            if (frequency.ContainsKey(word))
+            {
+                frequency[word]++;
+            }
+            else
+            {
+                frequency[word] = 1;
+            }
+        }
+
+        // 4. Вывод результатов
+        Console.WriteLine("\nУникальные слова и их частота:");
+        foreach (string word in uniqueWords)
+        {
+            Console.WriteLine($"{word}: {frequency[word]} раз(а)");
+        }
+    }
+}
