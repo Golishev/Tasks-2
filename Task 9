@@ -1,1 +1,38 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        // 1. Ввод строки
+        Console.Write("Введите строку: ");
+        string input = Console.ReadLine();
+
+        // 2. Множество для хранения уникальных подстрок
+        HashSet<string> substrings = new HashSet<string>();
+
+        // 3. Генерация всех возможных подстрок
+        for (int i = 0; i < input.Length; i++)
+        {
+            string currentSubstring = "";
+            for (int j = i; j < input.Length; j++)
+            {
+                currentSubstring += input[j];
+                if (!substrings.Contains(currentSubstring))
+                {
+                    substrings.Add(currentSubstring);
+                }
+            }
+        }
+
+        // 4. Вывод результатов
+        Console.WriteLine("\nУникальные подстроки:");
+        foreach (string substring in substrings)
+        {
+            Console.WriteLine(substring);
+        }
+
+        Console.WriteLine("\nКоличество уникальных подстрок: " + substrings.Count);
+    }
+}
