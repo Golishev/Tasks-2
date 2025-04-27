@@ -1,1 +1,56 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        // 1. Задание двумерного массива
+        int[,] array = {
+            { 1, 2, 3 },
+            { 2, 3, 4 },
+            { 3, 4, 5 }
+        };
+
+        // 2. Множество для хранения уникальных элементов
+        HashSet<int> uniqueElements = new HashSet<int>();
+
+        // 3. Проход по массиву и добавление элементов в множество
+        for (int i = 0; i < array.GetLength(0); i++) // строки
+        {
+            for (int j = 0; j < array.GetLength(1); j++) // столбцы
+            {
+                uniqueElements.Add(array[i, j]);
+            }
+        }
+
+        // 4. Перенос в список для сортировки
+        List<int> sortedList = new List<int>();
+        foreach (int num in uniqueElements)
+        {
+            sortedList.Add(num);
+        }
+
+        // 5. Ручная сортировка (пузырьковая)
+        for (int i = 0; i < sortedList.Count - 1; i++)
+        {
+            for (int j = 0; j < sortedList.Count - 1 - i; j++)
+            {
+                if (sortedList[j] > sortedList[j + 1])
+                {
+                    int temp = sortedList[j];
+                    sortedList[j] = sortedList[j + 1];
+                    sortedList[j + 1] = temp;
+                }
+            }
+        }
+
+        // 6. Вывод отсортированных уникальных элементов
+        Console.WriteLine("Уникальные элементы в отсортированном порядке:");
+        foreach (int num in sortedList)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+    }
+}
