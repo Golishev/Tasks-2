@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+
+        // 1. Создание двух множеств
+        HashSet<int> set1 = new HashSet<int>();
+        HashSet<int> set2 = new HashSet<int>();
+
+        while (set1.Count < 10)
+        {
+            set1.Add(random.Next(1, 21)); // числа от 1 до 20
+        }
+        while (set2.Count < 10)
+        {
+            set2.Add(random.Next(1, 21));
+        }
+
+        // 2. Вывод множеств
+        Console.WriteLine("Множество 1:");
+        foreach (int num in set1)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        Console.WriteLine("Множество 2:");
+        foreach (int num in set2)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 3. Объединение
+        HashSet<int> unionSet = new HashSet<int>();
+        foreach (int num in set1)
+        {
+            unionSet.Add(num);
+        }
+        foreach (int num in set2)
+        {
+            unionSet.Add(num);
+        }
+
+        Console.WriteLine("Объединение:");
+        foreach (int num in unionSet)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 4. Пересечение
+        HashSet<int> intersectionSet = new HashSet<int>();
+        foreach (int num in set1)
+        {
+            if (set2.Contains(num))
+            {
+                intersectionSet.Add(num);
+            }
+        }
+
+        Console.WriteLine("Пересечение:");
+        foreach (int num in intersectionSet)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 5. Разность (set1 - set2)
+        HashSet<int> differenceSet = new HashSet<int>();
+        foreach (int num in set1)
+        {
+            if (!set2.Contains(num))
+            {
+                differenceSet.Add(num);
+            }
+        }
+
+        Console.WriteLine("Разность (Множество1 - Множество2):");
+        foreach (int num in differenceSet)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 6. Проверка подмножества
+        bool isSubset = true;
+        foreach (int num in set1)
+        {
+            if (!set2.Contains(num))
+            {
+                isSubset = false;
+                break;
+            }
+        }
+        Console.WriteLine("Является ли Множество1 подмножеством Множества2: " + (isSubset ? "Да" : "Нет"));
+    }
+}
