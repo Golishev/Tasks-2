@@ -1,1 +1,52 @@
 
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        string text = "Hello, hello world! World is beautiful, isn't it?";
+        text = text.ToLower(); // Игнорируем регистр
+
+        // Разбиваем текст на слова, игнорируя знаки препинания
+        string[] words = text.Split(new[] { ' ', ',', '.', '!', '?', ';', ':', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Словарь для подсчета частоты слов
+        Dictionary<string, int> wordCounts = new Dictionary<string, int>();
+
+        foreach (string word in words)
+        {
+            if (wordCounts.ContainsKey(word))
+                wordCounts[word]++;
+            else
+                wordCounts[word] = 1;
+        }
+
+        // Находим максимальное количество повторений
+        int maxCount = 0;
+        foreach (var pair in wordCounts)
+        {
+            if (pair.Value > maxCount)
+                maxCount = pair.Value;
+        }
+
+        // Собираем все слова с максимальным количеством повторений
+        List<string> mostFrequentWords = new List<string>();
+        foreach (var pair in wordCounts)
+        {
+            if (pair.Value == maxCount)
+                mostFrequentWords.Add(pair.Key);
+        }
+
+        // Выводим результат
+        Console.Write("Самые частые слова: [");
+        for (int i = 0; i < mostFrequentWords.Count; i++)
+        {
+            Console.Write($"\"{mostFrequentWords[i]}\"");
+            if (i < mostFrequentWords.Count - 1)
+                Console.Write(", ");
+        }
+        Console.WriteLine("]");
+    }
+}
