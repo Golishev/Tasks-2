@@ -1,1 +1,42 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        HashSet<int> uniqueNumbers = new HashSet<int>();
+        int inputNumber;
+
+        Console.WriteLine("Введите целые числа (0 для завершения):");
+
+        while (true)
+        {
+            Console.Write("Введите число: ");
+            string input = Console.ReadLine();
+
+            // Проверка на корректный ввод
+            bool isValid = int.TryParse(input, out inputNumber);
+            if (!isValid)
+            {
+                Console.WriteLine("Ошибка ввода. Пожалуйста, введите целое число.");
+                continue;
+            }
+
+            if (inputNumber == 0)
+            {
+                break;
+            }
+
+            uniqueNumbers.Add(inputNumber);
+        }
+
+        // Вывод уникальных чисел
+        Console.WriteLine("Уникальные числа:");
+        foreach (int num in uniqueNumbers)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+    }
+}
