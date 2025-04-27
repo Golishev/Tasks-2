@@ -1,1 +1,43 @@
+using System;
+using System.Collections.Generic;
 
+class Program
+{
+    static void Main()
+    {
+        // 1. Ввод основной строки и подстроки
+        Console.Write("Введите основную строку: ");
+        string mainString = Console.ReadLine();
+
+        Console.Write("Введите подстроку: ");
+        string subString = Console.ReadLine();
+
+        // 2. Заполнение множества символов основной строки
+        HashSet<char> mainChars = new HashSet<char>();
+        foreach (char c in mainString)
+        {
+            mainChars.Add(c);
+        }
+
+        // 3. Проверка всех символов подстроки
+        bool allContained = true;
+        foreach (char c in subString)
+        {
+            if (!mainChars.Contains(c))
+            {
+                allContained = false;
+                break;
+            }
+        }
+
+        // 4. Вывод результата
+        if (allContained)
+        {
+            Console.WriteLine("Все символы подстроки содержатся в основной строке.");
+        }
+        else
+        {
+            Console.WriteLine("Не все символы подстроки содержатся в основной строке.");
+        }
+    }
+}
